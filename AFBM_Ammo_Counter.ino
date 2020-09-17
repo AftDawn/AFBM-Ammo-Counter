@@ -158,9 +158,8 @@ switch (pageNum){
 display.display();
 }
 
-
-//splashScreen is Done!
-//Todo: make the splashScreen a bitmap
+//SPLASHSCREEN IS DEPRECATED
+//Todo: make the splashScreen a bitmap (Jokes on you, me, i did even better by putting it in the buffer when the display is initialised :P)
 void splashScreen() {
 #define shortSquareBracket 13
 #define longSquareBracket  32
