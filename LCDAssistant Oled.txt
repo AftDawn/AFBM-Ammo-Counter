@@ -1,0 +1,3 @@
+Byte orientation: Horizontal
+Size endianness: Big
+Pixels/byte: 8
