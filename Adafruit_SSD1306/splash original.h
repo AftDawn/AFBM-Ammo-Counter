@@ -1,4 +1,3 @@
-
 #define splash1_width 82
 #define splash1_height 64
 

@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "defines": [
+                "ARDUINO=10800",
+                "USBCON"
+            ],
+            "includePath": [
+                "${workspaceRoot}\\**",
+                "C:\\Users\\declan.jeffrey.00\\Documents\\Arduino\\libraries\\**",
+                "C:\\Users\\declan.jeffrey.00\\Documents\\arduino-1.8.13\\hardware\\arduino\\avr\\libraries\\SPI\\src",
+                "C:\\Users\\declan.jeffrey.00\\Documents\\arduino-1.8.13\\hardware\\arduino\\avr\\**",
+                "C:\\Users\\declan.jeffrey.00\\Documents\\arduino-1.8.13\\tools\\**"
+            ],
+            "forcedInclude": [
+                "C:\\Users\\declan.jeffrey.00\\Documents\\arduino-1.8.13\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
+            ],
+            "compilerPath": "C:\\Users\\declan.jeffrey.00\\Documents\\arduino-1.8.13\\hardware\\tools\\avr\\bin\\avr-gcc.exe",
+            "intelliSenseMode": "gcc-x64",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
