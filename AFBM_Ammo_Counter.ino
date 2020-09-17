@@ -56,27 +56,6 @@ String muzzleFlashItems[] = {
 };
 
 
-
-/**************************************************
-
-                    Idea Board
-
-Volt Meeter
-Smart Ammo counter
-Option for a muzzle flash LED
-Much later on make a chronograph function
-Use a select fire kit for more info
-
-Alpha name:AFBM Ammo Counter
-Release name:AFBM Ammo Counter Platform?
-
-**************************************************/
-
-
-
-
-
-
 void setup() {
 	Serial.begin(9600);
 	if(!display.begin(SSD1306_SWITCHCAPVCC)) {
@@ -86,36 +65,43 @@ void setup() {
 	pinMode(ammoSenser, INPUT_PULLUP);
 	display.display();
 
-	ammo = ammoTypes[8];
+	ammo = 50;
 
 }
 
 
 void loop() {
-	// int i=0;
-	// while(true) {
-	// 	showMenu(i,0);
-	// 	i++;
-	// 	if(i==menuItems->length()){
-	// 		i=0;
-	// 	}
-	// 	delay(500);
-	// }
-
-
-	if(detectShot() == true){
-		
+	int i=0;
+	while(true) {
+		showMenu(i,0);
+		i++;
+		if(i==menuItems->length()){
+			i=0;
+		}
+		delay(500);
 	}
+
+	// display.clearDisplay();
+	// if(detectShot() == true){
+	// 	ammo--;
+	// 	if (ammo == 0)
+	// 	{
+	// 		ammo == 50;
+	// 	}
+	// 	mainMenu();
+	// }
 }
 
   
 void mainMenu(){
 
 	display.clearDisplay();
-	display.setTextSize(3);
-	display.setCursor(43,36);
+	display.setTextSize(1);
+	display.setCursor(0,0);
 	display.println(ammo);
 	display.display();
+	Serial.print("ammo is at");
+	Serial.println(ammo);
 
 }
 
