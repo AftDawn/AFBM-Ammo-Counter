@@ -16,7 +16,7 @@ Written by Limor Fried/Ladyada for Adafruit Industries, with contributions from 
 Scrolling code contributed by Michael Gregg. Dynamic buffer allocation based on work by Andrew Canaday.
 BSD license, check license.txt for more information. All text above must be included in any redistribution
 **********************************************************************************************************/
-#include "src/Attachment Library/4026 (7 Segment Driver)/4026.h" //this fucking works? wow
+#include "src/Attachment Library/4026 (7 Segment Driver)/AFBM4026.h" //this fucking works? wow
 #define SCREEN_WIDTH 128 
 #define SCREEN_HEIGHT 64 
 
@@ -34,6 +34,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 #define OLED_RESET 13
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
 
+AFBM_4026 Segment(51,52,53,50);
 
 //All of the global stuff//
 
@@ -66,19 +67,15 @@ void setup() {
 	display.display();
 
 	ammo = 50;
+	
 
 }
 
 
 void loop() {
-	int i=0;
-	while(true) {
-		showMenu(i,0);
-		i++;
-		if(i==menuItems->length()){
-			i=0;
-		}
-		delay(500);
+	for(int i=0; i<100; i++){
+
+	Segment.sendNum(i);
 	}
 }
 
