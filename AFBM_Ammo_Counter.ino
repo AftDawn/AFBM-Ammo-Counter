@@ -16,7 +16,7 @@ Written by Limor Fried/Ladyada for Adafruit Industries, with contributions from 
 Scrolling code contributed by Michael Gregg. Dynamic buffer allocation based on work by Andrew Canaday.
 BSD license, check license.txt for more information. All text above must be included in any redistribution
 **********************************************************************************************************/
-
+#include "src/Attachment Library/4026 (7 Segment Driver)/4026.h" //this fucking works? wow
 #define SCREEN_WIDTH 128 
 #define SCREEN_HEIGHT 64 
 
