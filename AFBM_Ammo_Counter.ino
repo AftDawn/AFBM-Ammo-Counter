@@ -37,7 +37,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_MOSI, OLED_CLK, OLED_
 
 //All of the global stuff//
 
-const int ammoSenser = A0;
+#define ammoSensor  A0
 uint8_t ammo;
 
 int ammoTypes[] = {
@@ -62,7 +62,7 @@ void setup() {
 		Serial.println(F("SSD1306 allocation failed"));
 		for(;;);
 	}
-	pinMode(ammoSenser, INPUT_PULLUP);
+	pinMode(ammoSensor, INPUT_PULLUP);
 	display.display();
 
 	ammo = 50;
@@ -84,24 +84,21 @@ void loop() {
 
 
 void mainMenu(){
-
 	display.clearDisplay();
 	display.setTextSize(1);
 	display.setCursor(0,0);
 	display.println(ammo);
 	display.display();
-	Serial.print("ammo is at");
-	Serial.println(ammo);
 
 }
 
 
 bool detectShot(){
-	if (analogRead(ammoSenser) > 200){
+	if (analogRead(ammoSensor) > 200){
 		return 1;
 	}
 	else{
-		if (analogRead(ammoSenser) < 100)
+		if (analogRead(ammoSensor) < 100)
 		{
 			return 0;
 		}
