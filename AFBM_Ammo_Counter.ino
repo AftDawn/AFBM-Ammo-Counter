@@ -80,19 +80,9 @@ void loop() {
 		}
 		delay(500);
 	}
-
-	// display.clearDisplay();
-	// if(detectShot() == true){
-	// 	ammo--;
-	// 	if (ammo == 0)
-	// 	{
-	// 		ammo == 50;
-	// 	}
-	// 	mainMenu();
-	// }
 }
 
-  
+
 void mainMenu(){
 
 	display.clearDisplay();
@@ -119,27 +109,14 @@ bool detectShot(){
 }
 
 
-
-
 //showMenu is Not Done!
 void showMenu(int selectedItem, int pageNum) {
 display.clearDisplay();
-
-//max char length is 21
-
-//Back                              //Go back to the main page (aka ammo counter).
-//Muzzle Flash Setup                //Setup the muzzle flash (options for changing the color and turning it off)
-//Bat/Volt Warn Setup               //Setup the battery/voltage warning mode or turn it off.
-//Info                              //Show info about this project and how much fucking time i put into this (2/09/2020 at 7.48 PM)
-
-
-
 display.setCursor(0,0);
-
 
 switch (pageNum){
 	case 0: //not in any pages
-		//This code is from Marcus Wynwood (An Epic Guy!)
+		//This code is from Marcus Wynwood (An Epic Guy!(https://github.com/mwynwood))
 		for(int i=0; i<menuItems->length(); i++) {
 			if(selectedItem == i){
 				display.print("> ");
@@ -156,98 +133,4 @@ switch (pageNum){
 	break;
 }
 display.display();
-}
-
-//SPLASHSCREEN IS DEPRECATED
-//Todo: make the splashScreen a bitmap (Jokes on you, me, i did even better by putting it in the buffer when the display is initialised :P)
-void splashScreen() {
-#define shortSquareBracket 13
-#define longSquareBracket  32
-
-	display.clearDisplay();
-
-		//For the top square bracket
-
-			//for the left of the top square bracket
-			display.drawFastVLine(48,0,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastVLine(49,0,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastVLine(50,0,shortSquareBracket,SSD1306_WHITE);
-
-			//for the middle of the top square bracket
-			display.drawFastHLine(48,0,longSquareBracket,SSD1306_WHITE);
-			display.drawFastHLine(48,1,longSquareBracket,SSD1306_WHITE);
-			display.drawFastHLine(48,2,longSquareBracket,SSD1306_WHITE);
-
-			//for the right of the top square bracket
-			display.drawFastVLine(77,0,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastVLine(78,0,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastVLine(79,0,shortSquareBracket,SSD1306_WHITE);
-
-
-		//For the right square bracket
-
-
-			//for the top of the right square bracket
-			display.drawFastHLine(83,16,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastHLine(83,17,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastHLine(83,18,shortSquareBracket,SSD1306_WHITE);
-
-			//for the middle of the right square bracket
-			display.drawFastVLine(94,16,longSquareBracket,SSD1306_WHITE);
-			display.drawFastVLine(95,16,longSquareBracket,SSD1306_WHITE);
-			display.drawFastVLine(96,16,longSquareBracket,SSD1306_WHITE);
-
-			//for the bottom of the right square bracket
-			display.drawFastHLine(83,45,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastHLine(83,46,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastHLine(83,47,shortSquareBracket,SSD1306_WHITE);
-
-		//For the bottom square bracket 
-
-
-			//for the left of the bottom square bracket
-			display.drawFastVLine(48,51,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastVLine(49,51,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastVLine(50,51,shortSquareBracket,SSD1306_WHITE);
-
-			//for the middle of the bottom square bracket
-			display.drawFastHLine(48,61,longSquareBracket,SSD1306_WHITE);
-			display.drawFastHLine(48,62,longSquareBracket,SSD1306_WHITE);
-			display.drawFastHLine(48,63,longSquareBracket,SSD1306_WHITE);
-
-			//for the right of the bottom square bracket
-			display.drawFastVLine(77,51,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastVLine(78,51,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastVLine(79,51,shortSquareBracket,SSD1306_WHITE);
-
-
-		//For the left square bracket
-
-
-			//for the top of the left square bracket
-			display.drawFastHLine(32,16,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastHLine(32,17,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastHLine(32,18,shortSquareBracket,SSD1306_WHITE);
-
-			//for the middle of the left square bracket
-			display.drawFastVLine(32,16,longSquareBracket,SSD1306_WHITE);
-			display.drawFastVLine(33,16,longSquareBracket,SSD1306_WHITE);
-			display.drawFastVLine(34,16,longSquareBracket,SSD1306_WHITE);
-
-			//for the bottom of the left square bracket
-			display.drawFastHLine(32,45,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastHLine(32,46,shortSquareBracket,SSD1306_WHITE);
-			display.drawFastHLine(32,47,shortSquareBracket,SSD1306_WHITE);
-
- 	display.setTextSize(1);
-  	display.setTextColor(SSD1306_WHITE);
-	display.setCursor(52,28);
-	display.println("AFBM");
-
-
-
-	display.display();
-	delay(2000);
-	display.clearDisplay();
-	display.display();
 }
