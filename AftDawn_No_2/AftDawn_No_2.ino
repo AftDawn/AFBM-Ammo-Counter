@@ -23,11 +23,6 @@ void setup() {
   pinMode(tensSet, OUTPUT);
   pinMode(onesSet, OUTPUT);
   pinMode(reset, OUTPUT);
-//this is just for debug purpose
-  Serial.begin(9600);
-  Serial.println("AftDawn's Debug Info For The Alt ARD-30");
-  Serial.println("You shouldn't be here, in my blaster, in MY CODE!");
-  Serial.println("lol jk, you can be here, even if you are not here because of somthing going wrong");
   digitalWrite(reset, LOW);
 }
 
@@ -57,11 +52,7 @@ void make_Num(int Number) {
   int tens = 0;
   int ones = 0;
   tens = Number / 10;
-  Serial.println("the tens is ");
-  Serial.println(tens);
   ones = Number % 10;
-  Serial.println("the ones is ");
-  Serial.println(ones);
 
 
   delay(1);
