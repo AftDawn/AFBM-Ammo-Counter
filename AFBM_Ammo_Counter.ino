@@ -16,7 +16,12 @@ Written by Limor Fried/Ladyada for Adafruit Industries, with contributions from 
 Scrolling code contributed by Michael Gregg. Dynamic buffer allocation based on work by Andrew Canaday.
 BSD license, check license.txt for more information. All text above must be included in any redistribution
 **********************************************************************************************************/
-#include "src/Attachment Library/4026 (7 Segment Driver)/AFBM4026.h" //this fucking works? wow
+#include <JC_Button.h>
+
+
+//#include "src/Attachment Library/4026 (7 Segment Driver)/AFBM4026.h" //this fucking works? wow
+
+
 #define SCREEN_WIDTH 128 
 #define SCREEN_HEIGHT 64 
 
@@ -34,7 +39,11 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 #define OLED_RESET 13
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
 
-AFBM_4026 Segment(51,52,53,50);
+
+#define selectButton 3
+#define	scrollButton 2
+Button Select(selectButton);
+Button Scroll(scrollButton);
 
 //All of the global stuff//
 
@@ -45,16 +54,16 @@ int ammoTypes[] = {
 	06,10,12,18,22,25,35,50
 };
 
-static String menuItems[] = {
-	"Back",
-	"Info"
-};
+// static String menuItems[] = {
+// 	"Back",
+// 	"Info"
+// };
 
-String muzzleFlashItems[] = {
-	"Red",
-	"Green",
-	"Blue"
-};
+// String muzzleFlashItems[] = {
+// 	"Red",
+// 	"Green",
+// 	"Blue"
+// };
 
 
 void setup() {
@@ -63,30 +72,54 @@ void setup() {
 		Serial.println(F("SSD1306 allocation failed"));
 		for(;;);
 	}
+	Select.begin();
+	Scroll.begin();
 	pinMode(ammoSensor, INPUT_PULLUP);
 	display.display();
-
-	ammo = 50;
 	
 
 }
 
 
 void loop() {
-	for(int i=0; i<100; i++){
-
-	Segment.sendNum(i);
-	}
+	Serial.print ("Select:");
+	Serial.print(dectectSelectButton());
+	Serial.print ("     ");
+	Serial.print ("Scroll:");
+	Serial.println(dectectScrollButton());
 }
 
-
-void mainMenu(){
+// Show the Ammo counter plus any attachments (Flashlight etc)
+void mainScreen(){
 	display.clearDisplay();
 	display.setTextSize(1);
 	display.setCursor(0,0);
 	display.println(ammo);
 	display.display();
 
+}
+const unsigned long heldPress(600);
+int dectectSelectButton(){
+	if (Select.read() == true){
+		if (Select.pressedFor(heldPress) == true){
+			return 2;
+		}
+	return 1;
+	}
+	else{
+		return 0;
+	}
+}
+int dectectScrollButton(){
+	if (Scroll.read() == true){
+		if (Scroll.pressedFor(heldPress) == true){
+			return 2;
+		}
+	return 1;
+	}
+	else{
+		return 0;
+	}
 }
 
 
@@ -104,27 +137,27 @@ bool detectShot(){
 
 
 //showMenu is Not Done!
-void showMenu(int selectedItem, int pageNum) {
-display.clearDisplay();
-display.setCursor(0,0);
+// void showMenu(int selectedItem, int pageNum) {
+// display.clearDisplay();
+// display.setCursor(0,0);
 
-switch (pageNum){
-	case 0: //not in any pages
-		//This code is from Marcus Wynwood (An Epic Guy!(https://github.com/mwynwood))
-		for(int i=0; i<menuItems->length(); i++) {
-			if(selectedItem == i){
-				display.print("> ");
-			}
-			else{
-			display.print("  ");
-			}
-			display.println(menuItems[i]);
-		}
-	break;
+// switch (pageNum){
+// 	case 0: //not in any pages
+// 		//This code is from Marcus Wynwood (An Epic Guy!(https://github.com/mwynwood))
+// 		for(int i=0; i<menuItems->length(); i++) {
+// 			if(selectedItem == i){
+// 				display.print("> ");
+// 			}
+// 			else{
+// 			display.print("  ");
+// 			}
+// 			display.println(menuItems[i]);
+// 		}
+// 	break;
 
-	case 1: //in Muzzle Flash Page 
+// 	case 1: //in Muzzle Flash Page 
 
-	break;
-}
-display.display();
-}
+// 	break;
+// }
+// display.display();
+// }

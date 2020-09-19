@@ -7,11 +7,14 @@
                 "USBCON"
             ],
             "includePath": [
+                "C:\\Users\\Decan\\Documents\\Arduino\\libraries\\JC_Button\\src",
                 "${workspaceRoot}\\**",
                 "C:\\Users\\Decan\\AppData\\Local\\Arduino15\\packages\\**",
                 "C:\\Program Files (x86)\\Arduino\\libraries\\**",
                 "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\libraries\\SPI\\src",
-                "C:\\Users\\Decan\\Documents\\Arduino\\libraries\\**"
+                "C:\\Users\\Decan\\Documents\\Arduino\\libraries\\**",
+                "C:\\Users\\Decan\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.3\\**",
+                "C:\\Users\\Decan\\AppData\\Local\\Arduino15\\packages\\arduino\\tools\\**"
             ],
             "forcedInclude": [
                 "C:\\Users\\Decan\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.3\\cores\\arduino\\Arduino.h"
