@@ -77,8 +77,6 @@ void setup() {
 	pinMode(ammoSensor, INPUT_PULLUP);
 	oled.display();
 	delay(2000);
-	
-
 }
 
 
@@ -89,14 +87,36 @@ void loop() {
 	Serial.print ("Scroll:");
 	Serial.println(dectectScrollButton());
 	mainScreen();
+	
 }
 
 // Show the Ammo counter plus any attachments (Flashlight etc)
 void mainScreen(){
 	oled.clearDisplay();
+	oled.setTextColor(SSD1306_WHITE);
+
+
+	oled.setTextSize(4);
+	oled.setCursor(43,36);
+
+	ammo = ammo < 10 ? ("0" + (uint8_t)ammo) : (uint8_t)ammo;
+
+	oled.print(ammo);
+	// if (ammo < 10)
+	// {
+	// 	oled.print("0");
+	// 	oled.print(ammo);
+	// }
+	// else
+	// {
+	// 	oled.print(ammo);
+	// }
+
+
 	oled.setTextSize(1);
-	oled.setCursor(20,20);
-	oled.println("Test");
+	oled.setCursor(92,57);
+	oled.print("RNDS");
+
 	oled.display();
 
 }
