@@ -87,7 +87,6 @@ void loop() {
 	Serial.print ("     ");
 	Serial.print ("Scroll:");
 	Serial.println(dectectScrollButton());
-	mainScreen();
 	if(ammo > 99) ammo = 99;
 	if(detectShot() && oneTimeTrigger == true){
 		ammo--;
@@ -96,6 +95,7 @@ void loop() {
 	if(!detectShot() && !oneTimeTrigger){
 		oneTimeTrigger = true;
 	}
+	mainScreen();
 }
 
 // Show the Ammo counter plus any attachments (Flashlight etc)
