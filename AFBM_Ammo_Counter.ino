@@ -49,6 +49,7 @@ Button Scroll(scrollButton);
 
 #define ammoSensor  A0
 uint8_t ammo;
+bool oneTimeTrigger = 0;
 
 int ammoTypes[] = {
 	06,10,12,18,22,25,35,50
@@ -87,7 +88,14 @@ void loop() {
 	Serial.print ("Scroll:");
 	Serial.println(dectectScrollButton());
 	mainScreen();
-	
+	if(ammo > 99) ammo = 99;
+	if(detectShot() && oneTimeTrigger == true){
+		ammo--;
+		oneTimeTrigger = false;
+	};
+	if(!detectShot() && !oneTimeTrigger){
+		oneTimeTrigger = true;
+	}
 }
 
 // Show the Ammo counter plus any attachments (Flashlight etc)
@@ -99,18 +107,15 @@ void mainScreen(){
 	oled.setTextSize(4);
 	oled.setCursor(43,36);
 
-	ammo = ammo < 10 ? ("0" + (uint8_t)ammo) : (uint8_t)ammo;
-
-	oled.print(ammo);
-	// if (ammo < 10)
-	// {
-	// 	oled.print("0");
-	// 	oled.print(ammo);
-	// }
-	// else
-	// {
-	// 	oled.print(ammo);
-	// }
+	if (ammo < 10)
+	{
+		oled.print("0");
+		oled.print(ammo);
+	}
+	else
+	{
+		oled.print(ammo);
+	}
 
 
 	oled.setTextSize(1);
