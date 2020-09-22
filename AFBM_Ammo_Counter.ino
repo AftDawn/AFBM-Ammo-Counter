@@ -20,24 +20,25 @@ BSD license, check license.txt for more information. All text above must be incl
 
 
 //#include "src/Attachment Library/4026 (7 Segment Driver)/AFBM4026.h" //this fucking works? wow
+// #include "src/Attachment Library/mainMenu/mainMenu.h"
 
 
 #define SCREEN_WIDTH 128 
 #define SCREEN_HEIGHT 64 
 
 //Todo: Look into I2C as a 2 wire solution instead of using SPI's 5 wire connection, I2C oled code below 
-/*
-// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
-#define OLED_RESET -1 // Reset pin # (or -1 if sharing Arduino reset pin)
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-*/
 
-#define OLED_MOSI   9
-#define OLED_CLK   10
-#define OLED_DC    11
-#define OLED_CS    12
-#define OLED_RESET 13
-Adafruit_SSD1306 oled(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
+// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
+#define OLED_RESET 22 // Reset pin # (or -1 if sharing Arduino reset pin)
+Adafruit_SSD1306 oled(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+
+// #define OLED_MOSI   9
+// #define OLED_CLK   10
+// #define OLED_DC    11
+// #define OLED_CS    12
+// #define OLED_RESET 13
+// Adafruit_SSD1306 oled(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
 
 
 #define selectButton 3
@@ -48,10 +49,10 @@ Button Scroll(scrollButton);
 //All of the global stuff//
 
 #define ammoSensor  A0
-uint8_t ammo;
+byte ammo;
 bool oneTimeTrigger = 0;
 
-int ammoTypes[] = {
+byte ammoTypes[] = {
 	06,10,12,18,22,25,35,50
 };
 
