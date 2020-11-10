@@ -1,0 +1,3 @@
+OLED:General info
+LCD:debug?
+4026:just ammo

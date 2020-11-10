@@ -6,13 +6,13 @@
 class AFBM_4026
 {
     public:
-        AFBM_4026(int enablePin, int tensPin, int onesPin, int resetPin);
+        AFBM_4026(int tensPin, int onesPin, int resetPin);
         void sendNum(int numberToDisplay);
     private:
     uint8_t currentNum;
-    uint8_t enablePin;
     uint8_t tensPin;
     uint8_t onesPin;
     uint8_t resetPin;
 };
+
 #endif

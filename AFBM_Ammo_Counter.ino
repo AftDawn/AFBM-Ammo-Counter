@@ -19,9 +19,7 @@ BSD license, check license.txt for more information. All text above must be incl
 #include <JC_Button.h>
 
 
-//#include "src/Attachment Library/4026 (7 Segment Driver)/AFBM4026.h" //this fucking works? wow
-// #include "src/Attachment Library/mainMenu/mainMenu.h"
-
+#include "src/Display Library/7 Segment/AFBM4026.h"
 
 #define SCREEN_WIDTH 128 
 #define SCREEN_HEIGHT 64 
@@ -31,6 +29,7 @@ BSD license, check license.txt for more information. All text above must be incl
 // Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
 #define OLED_RESET 22 // Reset pin # (or -1 if sharing Arduino reset pin)
 Adafruit_SSD1306 oled(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+AFBM_4026 sevSeg(30, 31, 32);
 
 
 // #define OLED_MOSI   9
@@ -41,10 +40,14 @@ Adafruit_SSD1306 oled(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 // Adafruit_SSD1306 oled(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
 
 
-#define selectButton 3
-#define	scrollButton 2
+#define selectButton 24
+#define	scrollButton 25
+#define revButton    26
+#define fireButton   27
 Button Select(selectButton);
 Button Scroll(scrollButton);
+Button Rev(revButton);
+Button Fire(fireButton);
 
 //All of the global stuff//
 
@@ -69,15 +72,15 @@ byte ammoTypes[] = {
 
 
 void setup() {
-	Serial.begin(9600);
-	if(!oled.begin(SSD1306_SWITCHCAPVCC)) {
-		Serial.println(F("SSD1306 allocation failed"));
-		for(;;);
-	}
+	// Serial.begin(9600);
+	// if(!oled.begin(SSD1306_SWITCHCAPVCC)) {
+	// 	Serial.println(F("SSD1306 allocation failed"));
+	// 	for(;;);
+	// }
 	Select.begin();
 	Scroll.begin();
 	pinMode(ammoSensor, INPUT_PULLUP);
-	oled.display();
+	// oled.display();
 	delay(2000);
 }
 
@@ -87,16 +90,26 @@ void loop() {
 	Serial.print(dectectSelectButton());
 	Serial.print ("     ");
 	Serial.print ("Scroll:");
-	Serial.println(dectectScrollButton());
-	if(ammo > 99) ammo = 99;
-	if(detectShot() && oneTimeTrigger == true){
-		ammo--;
-		oneTimeTrigger = false;
-	};
-	if(!detectShot() && !oneTimeTrigger){
-		oneTimeTrigger = true;
+	Serial.print(dectectScrollButton());
+	Serial.print ("     ");
+	Serial.print ("Rev:");
+	Serial.print(dectectRevButton());
+	Serial.print ("     ");
+	Serial.print ("Fire:");
+	Serial.print(dectectFireButton());
+	// if(ammo > 99) ammo = 99;
+	// if(detectShot() && oneTimeTrigger == true){
+	// 	ammo--;
+	// 	oneTimeTrigger = false;
+	// };
+	// if(!detectShot() && !oneTimeTrigger){
+	// 	oneTimeTrigger = true;
+	// }
+	// mainScreen();
+	for(int i=0; i<99; i++){
+		sevSeg.sendNum(i);
 	}
-	mainScreen();
+	delay(100);
 }
 
 // Show the Ammo counter plus any attachments (Flashlight etc)
@@ -141,6 +154,28 @@ int dectectSelectButton(){
 int dectectScrollButton(){
 	if (Scroll.read() == true){
 		if (Scroll.pressedFor(heldPress) == true){
+			return 2;
+		}
+	return 1;
+	}
+	else{
+		return 0;
+	}
+}
+int dectectRevButton(){
+	if (Rev.read() == true){
+		if (Rev.pressedFor(heldPress) == true){
+			return 2;
+		}
+	return 1;
+	}
+	else{
+		return 0;
+	}
+}
+int dectectFireButton(){
+	if (Fire.read() == true){
+		if (Fire.pressedFor(heldPress) == true){
 			return 2;
 		}
 	return 1;

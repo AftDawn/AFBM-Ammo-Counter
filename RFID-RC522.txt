@@ -1,0 +1,9 @@
+1:Serial Data  (I2C)
+2:Serial Clock (I2C)
+3:Master Out Slave In (SPI)
+4:Master In Slave Out (SPI)
+5:Interrupt
+6:Ground
+7:Reset
+8:3.3v
+

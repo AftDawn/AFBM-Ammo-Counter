@@ -1,25 +1,24 @@
 #include <Arduino.h>
 #include "AFBM4026.h"
 
-AFBM_4026::AFBM_4026(int enablePin, int tensPin, int onesPin, int resetPin){
-    pinMode(enablePin, OUTPUT);
+AFBM_4026::AFBM_4026(int tensPin, int onesPin, int resetPin){
     pinMode(tensPin, OUTPUT);
     pinMode(onesPin, OUTPUT);
     pinMode(resetPin, OUTPUT);
 }
 
-void AFBM_4026::sendNum(int numberToDisplay){
+void AFBM_4026::sendNum(int number){
   int tens = 0;
   int ones = 0;
-  tens = numberToDisplay / 10;
-  ones = numberToDisplay % 10;
+  tens = number / 10;
+  ones = number % 10;
 
 
   delay(1);
-  digitalWrite(enablePin, LOW);
   digitalWrite(resetPin, HIGH);
   delay(1);
   digitalWrite(resetPin, LOW);
+
   int pulseTens = tens;
   while(pulseTens > 0){
     digitalWrite(tensPin, HIGH);
@@ -37,5 +36,4 @@ void AFBM_4026::sendNum(int numberToDisplay){
     delay(1);
     pulseOnes--;
   }
-  digitalWrite(enablePin, HIGH);
 }
