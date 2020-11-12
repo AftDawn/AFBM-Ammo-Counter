@@ -55,9 +55,10 @@ Button Fire(fireButton);
 byte ammo;
 bool oneTimeTrigger = 0;
 
-byte ammoTypes[] = {
-	06,10,12,18,22,25,35,50
-};
+//TODO: Put this code and all other code into respective library's 
+// byte ammoTypes[] = {
+// 	06,10,12,18,22,25,35,50
+// };
 
 // static String menuItems[] = {
 // 	"Back",
@@ -139,6 +140,7 @@ void mainScreen(){
 	oled.display();
 
 }
+
 const unsigned long heldPress(600);
 int dectectSelectButton(){
 	if (Select.read() == true){
@@ -188,12 +190,12 @@ int dectectFireButton(){
 
 bool detectShot(){
 	if (analogRead(ammoSensor) > 200){
-		return 1;
+		return true;
 	}
 	else{
 		if (analogRead(ammoSensor) < 100)
 		{
-			return 0;
+			return false;
 		}
 	}
 }
